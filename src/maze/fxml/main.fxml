@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maze.controller.MainController">
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="449.0">
          <children>
@@ -57,7 +57,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TitledPane>
-                              <Button fx:id="btGenerate" mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Сгенерировать">
+                              <Button fx:id="btGenerate" mnemonicParsing="false" onAction="#btGenerateButtonAction" prefHeight="51.0" prefWidth="232.0" text="Сгенерировать">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -149,7 +149,7 @@
                                     <Insets bottom="30.0" left="30.0" right="30.0" />
                                  </VBox.margin>
                               </TitledPane>
-                              <Button fx:id="btStart" mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Начать проходить">
+                              <Button fx:id="btStart" mnemonicParsing="false" onAction="#btStartButtonAction" prefHeight="51.0" prefWidth="232.0" text="Начать проходить">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -169,7 +169,7 @@
                   </TitledPane>
                </children>
             </VBox>
-            <Button fx:id="btAutoGo" mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Пройти">
+            <Button fx:id="btAutoGo" mnemonicParsing="false" onAction="#btAutoGoButtonAction" prefHeight="51.0" prefWidth="232.0" text="Пройти">
                <font>
                   <Font size="24.0" />
                </font>
@@ -181,13 +181,23 @@
       </VBox>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="680.0">
          <children>
-            <Pane fx:id="pnShowMaze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: grey;">
+            <GridPane fx:id="pnShowMaze" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: grey;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <VBox.margin>
                   <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-               </VBox.margin></Pane>
+               </VBox.margin>
+            </GridPane>
             <HBox alignment="CENTER" prefHeight="139.0" prefWidth="700.0">
                <children>
-                  <Button fx:id="btStep" mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Сделать шаг">
+                  <Button fx:id="btStep" mnemonicParsing="false" onAction="#btStepButtonAction" prefHeight="51.0" prefWidth="232.0" text="Сделать шаг">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -195,7 +205,7 @@
                         <Insets bottom="15.0" left="170.0" right="100.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btExit" mnemonicParsing="false" prefHeight="51.0" prefWidth="120.0" text="Выход">
+                  <Button fx:id="btExit" mnemonicParsing="false" onAction="#btExitButtonAction" prefHeight="51.0" prefWidth="120.0" text="Выход">
                      <font>
                         <Font size="24.0" />
                      </font>

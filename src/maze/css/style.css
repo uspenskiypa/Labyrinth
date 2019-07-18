@@ -1,0 +1,18 @@
+.maze {
+    -fx-background-color: #C9683B;
+    -fx-padding: 10 0 0 10;
+}
+.maze-location {
+    -fx-background-color: #C9683B, lightcyan;
+
+}
+.maze-location.right {
+    -fx-background-insets: 0, 0 9 0 0 ;
+}
+.maze-location.down {
+    -fx-background-insets: 0, 0 0 9 0 ;
+}
+.maze-location.right.down {
+    -fx-background-insets: 0, 0 9 9 0 ;
+}
+

@@ -12,6 +12,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/maze/fxml/main.fxml"));
         Scene scene = new Scene(root, 1150, 720);
+        scene.getStylesheets().add("/maze/css/style.css");
         
         stage.setTitle("Моделирование лабиринта и поиск выхода из него");
         stage.setResizable(false);

@@ -8,21 +8,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" prefHeight="720.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maze.controller.MainController">
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="449.0">
          <children>
             <VBox prefHeight="284.0" prefWidth="449.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" prefHeight="234.0" prefWidth="409.0" text="Построение лабиринта">
+                  <TitledPane fx:id="pnConstruction" animated="false" collapsible="false" prefHeight="234.0" prefWidth="409.0" text="Построение лабиринта">
                      <content>
                         <VBox alignment="CENTER" prefHeight="171.0" prefWidth="370.0">
                            <children>
-                              <TitledPane animated="false" collapsible="false" prefHeight="71.0" prefWidth="325.0" text="Алгоритм">
+                              <TitledPane fx:id="pnConstructionAlg" animated="false" collapsible="false" prefHeight="71.0" prefWidth="325.0" text="Алгоритм">
                                  <content>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" selected="true" text="Прима">
+                                          <RadioButton fx:id="rbAlgPrim" mnemonicParsing="false" selected="true" text="Прима">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -36,7 +36,7 @@
                                                 <ToggleGroup fx:id="tgConstructionAlg" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Краскала" toggleGroup="$tgConstructionAlg">
+                                          <RadioButton fx:id="rbAlgKruskal" mnemonicParsing="false" text="Краскала" toggleGroup="$tgConstructionAlg">
                                              <HBox.margin>
                                                 <Insets left="50.0" />
                                              </HBox.margin>
@@ -57,7 +57,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </TitledPane>
-                              <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Сгенерировать">
+                              <Button fx:id="btGenerate" mnemonicParsing="false" onAction="#btGenerateButtonAction" prefHeight="51.0" prefWidth="232.0" text="Сгенерировать">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -79,15 +79,15 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="341.0" prefWidth="449.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="409.0" text="Прохождение лабиринта">
+                  <TitledPane fx:id="pnPassing" animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="409.0" text="Прохождение лабиринта">
                      <content>
                         <VBox alignment="CENTER" prefHeight="360.0" prefWidth="407.0">
                            <children>
-                              <TitledPane animated="false" collapsible="false" prefHeight="72.0" prefWidth="325.0" text="Алгоритм">
+                              <TitledPane fx:id="pnPassingAlg" animated="false" collapsible="false" prefHeight="72.0" prefWidth="325.0" text="Алгоритм">
                                  <content>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" selected="true" text="&quot;Правой руки&quot;">
+                                          <RadioButton fx:id="rbAlgRight" mnemonicParsing="false" selected="true" text="&quot;Правой руки&quot;">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -98,7 +98,7 @@
                                                 <ToggleGroup fx:id="tgPassingAlg" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Люка-Тремо" toggleGroup="$tgPassingAlg">
+                                          <RadioButton fx:id="rbAlgTremo" mnemonicParsing="false" text="Люка-Тремо" toggleGroup="$tgPassingAlg">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -116,11 +116,11 @@
                                     <Insets bottom="30.0" left="30.0" right="30.0" />
                                  </VBox.margin>
                               </TitledPane>
-                              <TitledPane animated="false" collapsible="false" prefHeight="72.0" prefWidth="325.0" text="Режим">
+                              <TitledPane fx:id="pnPassingMode" animated="false" collapsible="false" prefHeight="72.0" prefWidth="325.0" text="Режим">
                                  <content>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" selected="true" text="Автоматический">
+                                          <RadioButton fx:id="rbModeAuto" mnemonicParsing="false" selected="true" text="Автоматический">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -131,7 +131,7 @@
                                                 <ToggleGroup fx:id="tgPassingMode" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Потактовый" toggleGroup="$tgPassingMode">
+                                          <RadioButton fx:id="rbModeTact" mnemonicParsing="false" text="Потактовый" toggleGroup="$tgPassingMode">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -149,7 +149,7 @@
                                     <Insets bottom="30.0" left="30.0" right="30.0" />
                                  </VBox.margin>
                               </TitledPane>
-                              <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Начать проходить">
+                              <Button fx:id="btStart" mnemonicParsing="false" onAction="#btStartButtonAction" prefHeight="51.0" prefWidth="232.0" text="Начать проходить">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -169,7 +169,7 @@
                   </TitledPane>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Пройти">
+            <Button fx:id="btAutoGo" mnemonicParsing="false" onAction="#btAutoGoButtonAction" prefHeight="51.0" prefWidth="232.0" text="Пройти">
                <font>
                   <Font size="24.0" />
                </font>
@@ -181,13 +181,40 @@
       </VBox>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="680.0">
          <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: grey;">
+            <GridPane fx:id="pnGridMaze" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="maze" stylesheets="@../css/style.css">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <VBox.margin>
                   <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-               </VBox.margin></Pane>
+               </VBox.margin>
+            </GridPane>
             <HBox alignment="CENTER" prefHeight="139.0" prefWidth="700.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="232.0" text="Сделать шаг">
+                  <Button fx:id="btStep" mnemonicParsing="false" onAction="#btStepButtonAction" prefHeight="51.0" prefWidth="232.0" text="Сделать шаг">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -195,7 +222,7 @@
                         <Insets bottom="15.0" left="170.0" right="100.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="120.0" text="Выход">
+                  <Button fx:id="btExit" mnemonicParsing="false" onAction="#btExitButtonAction" prefHeight="51.0" prefWidth="120.0" text="Выход">
                      <font>
                         <Font size="24.0" />
                      </font>

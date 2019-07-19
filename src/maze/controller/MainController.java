@@ -32,7 +32,7 @@ public class MainController {
             maze.runPrimAlg(columns, rows); //использование алгоритма Прима
         }           
         else {
-            
+             maze.runKruskalAlg(columns, rows); //использование алгоритма Краскала
         }
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
@@ -51,7 +51,7 @@ public class MainController {
     
     //Обработчик нажатия на кнопку "Начать проходить"
     public void btStartButtonAction(ActionEvent actionEvent) {
-        
+
     }
     
     //Обработчик нажатия на кнопку "Пройти"

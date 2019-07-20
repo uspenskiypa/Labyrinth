@@ -11,6 +11,7 @@ public class Labyrinth {
     public  enum Attribute {INSIDE, OUTSIDE, BORDER}; //статус локаций
     private ArrayList<Location> borderList = new ArrayList<Location>(); //список с локациями, статус  "BORDER"
     private ArrayList<Location> insideList = new ArrayList<Location>(); //список с локациями, статус  "INSIDE"
+    private int exitX, exitY, entryX, entryY;
     
     //Конструктор. Создание массива maze и его заполнение локациями,
     //присвоение локациям координат расположения в массиве. 
@@ -23,10 +24,6 @@ public class Labyrinth {
                 maze[i][j].y = j;
             }
         }
-    }
-    
-    public Location getLocation(int columns, int rows) {
-        return maze[columns][rows];
     }
     
     //Алгоритм Прима. Локации имеют статус (атрибут). изначально их  
@@ -191,5 +188,25 @@ public class Labyrinth {
             }  
         }
         return false;
+    }
+    
+    public Location getLocation(int columns, int rows) {
+        return maze[columns][rows];
+    }
+    
+    public void setExitX(int exitX) {
+        this.exitX = exitX;
+    }
+
+    public void setExitY(int exitY) {
+        this.exitY = exitY;
+    }
+
+    public void setEntryX(int entryX) {
+        this.entryX = entryX;
+    }
+
+    public void setEntryY(int entryY) {
+        this.entryY = entryY;
     }
 }

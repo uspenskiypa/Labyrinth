@@ -1,10 +1,10 @@
 .maze {
-    -fx-background-color: #C9683B;
-    -fx-padding: 10 0 0 10;
+    -fx-background-color: #C9683B, lightcyan ;
+    -fx-background-insets: 0, 9 ;
+    -fx-padding: 9 0 0 9 ; 
 }
 .maze-location {
-    -fx-background-color: #C9683B, lightcyan;
-
+    -fx-background-color: #C9683B, lightcyan ;
 }
 .maze-location.right {
     -fx-background-insets: 0, 0 9 0 0 ;
@@ -15,4 +15,29 @@
 .maze-location.right.down {
     -fx-background-insets: 0, 0 9 9 0 ;
 }
-
+/*Если локация - выход из лабиринта*/
+.maze-exit {
+    -fx-background-color: #C9683B, #B1FFC6 ;
+}
+.maze-exit.right {
+    -fx-background-insets: 0, 0 9 0 0 ;
+}
+.maze-exit.down {
+    -fx-background-insets: 0, 0 0 9 0 ;
+}
+.maze-exit.right.down {
+    -fx-background-insets: 0, 0 9 9 0 ;
+}
+/*Если локация - вход в лабиринт*/
+.maze-entry {
+    -fx-background-color: #C9683B, #F6D99B ;
+}
+.maze-entry.right {
+    -fx-background-insets: 0, 0 9 0 0 ;
+}
+.maze-entry.down {
+    -fx-background-insets: 0, 0 0 9 0 ;
+}
+.maze-entry.right.down {
+    -fx-background-insets: 0, 0 9 9 0 ;
+}

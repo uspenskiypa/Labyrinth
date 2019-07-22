@@ -1,39 +1,12 @@
 package maze.objects;
 
-import java.util.LinkedList;
-
 public class Mouse {
     public int x, y; //координаты мыши
     public int direction; //направление движения
-    private LinkedList<Location> firstList; //список с координатоми локаций, пройденных единожды
-    private LinkedList<Location> secondList; //список с координатоми локаций, пройденных дважды
     
     public Mouse(int x, int y) {
         this.x = x;
         this.y = y;
-        firstList = new LinkedList<Location>();
-        secondList = new LinkedList<Location>();
-    }
-    
-    //Алгоритм "правой руки".
-    public void runRightHandAlg(boolean isFrontWall, boolean isRightWall) {
-        if (isRightWall) {
-            if (isFrontWall) {
-                leftRotate();
-            }
-            else {
-                toStep();
-            }
-        }
-        else {
-            rightRotate();
-            toStep();
-        }
-    }
-    
-    //Алгоритм "правой руки".
-    public void runTremoAlg() {
-        
     }
     
     //передвигает мышь на шаг вперед
@@ -60,10 +33,5 @@ public class Mouse {
         if (direction < 0) {
             direction = 3;
         }
-    }
-    
-    //разварачивает мышь на перекрестке
-    public void smartRotate() {
-        
     }
 }

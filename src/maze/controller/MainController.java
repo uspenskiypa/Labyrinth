@@ -95,7 +95,12 @@ public class MainController {
         maze.setMouse(mouse);
         imageView.setRotate(mouse.direction * 90);
         ((Pane)getNodeFromGridPane(pnGridMaze, maze.getExitX(), maze.getExitY())).getChildren().clear();
-        ((Pane)getNodeFromGridPane(pnGridMaze, mouse.x, mouse.y)).getChildren().add(imageView);    
+        ((Pane)getNodeFromGridPane(pnGridMaze, mouse.x, mouse.y)).getChildren().add(imageView);  
+        for (int i = 0; i < maze.getWidth(); i++) {
+            for (int j = 0; j < maze.getHeight(); j++) {
+                maze.getLocation(i, j).count = 0;
+            }
+        }
     }
     
     //Обработчик нажатия на кнопку "Пройти"
@@ -104,7 +109,12 @@ public class MainController {
         int ExitY = maze.getExitY();
         do {
             ((Pane)getNodeFromGridPane(pnGridMaze, mouse.x, mouse.y)).getChildren().clear();
-            mouse.runRightHandAlg(maze.isFrontWall(), maze.isRightWall());
+            if (rbAlgRight.isSelected()) {
+                maze.runRightHandAlg(maze.isFrontWall(), maze.isRightWall());
+            }
+            else {
+                maze.runTremoAlg(maze.getLocation(mouse.x, mouse.y));
+            }
             imageView.setRotate(mouse.direction * 90);
             ((Pane)getNodeFromGridPane(pnGridMaze, mouse.x, mouse.y)).getChildren().add(imageView);   
         }
@@ -119,10 +129,10 @@ public class MainController {
         int ExitY = maze.getExitY();
         ((Pane)getNodeFromGridPane(pnGridMaze, mouse.x, mouse.y)).getChildren().clear();
         if (rbAlgRight.isSelected()) {
-            mouse.runRightHandAlg(maze.isFrontWall(), maze.isRightWall());
+            maze.runRightHandAlg(maze.isFrontWall(), maze.isRightWall());
         }
         else {
-            
+            maze.runTremoAlg(maze.getLocation(mouse.x, mouse.y));
         }
         imageView.setRotate(mouse.direction * 90);
         ((Pane)getNodeFromGridPane(pnGridMaze, mouse.x, mouse.y)).getChildren().add(imageView);

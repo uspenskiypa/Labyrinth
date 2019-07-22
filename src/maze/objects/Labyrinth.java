@@ -41,7 +41,7 @@ public class Labyrinth {
         Random rn = new Random(); //объект класса Random
         Location currentLocation; //текущая локация
         Location randomLocation; //соседняя локация
-        currentLocation = maze[rn.nextInt(getWidth())][rn.nextInt(getHeight())];
+        currentLocation = maze[rn.nextInt(width)][rn.nextInt(height)];
         currentLocation.attribute = Attribute.INSIDE;
         changeLocationStatus(currentLocation);        
         while(!borderList.isEmpty()) {
@@ -64,14 +64,14 @@ public class Labyrinth {
     //нет прохода, то стена разрушается.
     public void runKruskalAlg() {
         LinkedList<Location[]> wallList = new LinkedList<Location[]>(); //список со всеми стенами
-        for (int i = 0; i < getWidth(); i++) { //Добавляем горизонтальные стены
-            for (int j = 0; j < getHeight()-1; j++) {
+        for (int i = 0; i < width; i++) { //Добавляем горизонтальные стены
+            for (int j = 0; j < height-1; j++) {
                 Location [] temp = {maze[i][j], maze[i][j+1]};
                 wallList.add(temp);
             }
         }
-        for (int i = 0; i < getWidth()-1; i++) { //Добавляем вертикальные стены
-            for (int j = 0; j < getHeight(); j++) {
+        for (int i = 0; i < width-1; i++) { //Добавляем вертикальные стены
+            for (int j = 0; j < height; j++) {
                 Location [] temp = {maze[i][j], maze[i+1][j]};
                 wallList.add(temp);
             }
@@ -81,6 +81,79 @@ public class Labyrinth {
             Location [] temp = wallList.pollFirst();
             if (!foundWay(temp[0], temp[1])) {
                 breakWall(temp[0], temp[1]);   
+            }
+        }
+    }
+    
+    //Алгоритм "правой руки".
+    public void runRightHandAlg(boolean isFrontWall, boolean isRightWall) {
+        if (isRightWall) {
+            if (isFrontWall) {
+                mouse.leftRotate();
+            }
+            else {
+                mouse.toStep();
+            }
+        }
+        else {
+            mouse.rightRotate();
+            mouse.toStep();
+        }
+    }
+    
+    //Алгоритм "Люка-Тремо".
+    public void runTremoAlg(Location currentLocation) {
+        int xc, yc; //координаты соседних локаций
+        int count = 0; //количество проходов вокруг локации
+        Location preferredLocation;
+        LinkedList<Location> wayList = new LinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            xc = currentLocation.x + dx[i];
+            yc = currentLocation.y + dy[i];
+            if ((xc >= 0) && (yc >= 0) && (xc < width) && (yc < height)) {
+                if (!checkWall(currentLocation, maze[xc][yc])) {
+                    ++count;
+                    wayList.add(maze[xc][yc]);
+                }
+            }
+        }
+        currentLocation.count++;
+        switch (count) {
+            case 1: {
+                currentLocation.count++;
+                smartRotate(currentLocation, wayList.poll());
+                mouse.toStep();
+                break;
+            }
+            case 2: {
+                if (!isFrontWall()) {
+                    mouse.toStep();
+                }
+                else if (!isRightWall()){
+                    mouse.rightRotate();
+                    mouse.toStep();
+                }
+                else {
+                    mouse.leftRotate();
+                    mouse.toStep();
+                }   
+                break;
+            }
+            case 3:
+            case 4: {
+                preferredLocation = wayList.poll();
+                //System.out.println(preferredLocation.count);
+                while(!wayList.isEmpty()) {
+                    if(wayList.peekFirst().count < preferredLocation.count) {
+                        preferredLocation = wayList.pollFirst();
+                    }
+                    else {
+                        wayList.removeFirst();
+                    }
+                }
+                smartRotate(currentLocation, preferredLocation);
+                mouse.toStep();
+                break;
             }
         }
     }
@@ -113,7 +186,7 @@ public class Labyrinth {
         for (int i = 0; i < 4; i++) {
             xc = currentLocation.x + dx[i];
             yc = currentLocation.y + dy[i];
-            if ((xc >= 0) && (yc >= 0) && (xc < getWidth()) && (yc < getHeight())) {
+            if ((xc >= 0) && (yc >= 0) && (xc < width) && (yc < height)) {
                 if (maze[xc][yc].attribute == Attribute.OUTSIDE) {
                     maze[xc][yc].attribute = Attribute.BORDER;
                     borderList.add(maze[xc][yc]);
@@ -144,7 +217,7 @@ public class Labyrinth {
                 for (int j = 0; j < 4; j++) { //движемся во все стороны
                     xc = currentLocation.x + dx[j];
                     yc = currentLocation.y + dy[j];
-                    if ((xc >= 0) && (yc >= 0) && (xc < getWidth()) && (yc < getHeight())) {
+                    if ((xc >= 0) && (yc >= 0) && (xc < width) && (yc < height)) {
                         if (!firstList.contains(maze[xc][yc])) {
                             isWall = checkWall(currentLocation, maze[xc][yc]);
                             if (!isWall) {
@@ -192,6 +265,28 @@ public class Labyrinth {
             }  
         }
         return false;
+    }
+    
+    //Разрушает стену между двумя локациями
+    private void smartRotate(Location firstLocation, Location secondLocation) {
+        int dX = secondLocation.x - firstLocation.x;
+        int dY = secondLocation.y - firstLocation.y;
+        if (dX == 0) {
+            if (dY == 1) {
+                mouse.direction = 2;
+            }
+            else {
+                mouse.direction = 0;
+            }
+        }
+        else {
+            if (dX == 1) {
+                mouse.direction = 1;
+            }
+            else {
+                mouse.direction = 3;
+            }
+        }
     }
     
     public boolean isFrontWall() {

@@ -149,7 +149,7 @@
                                     <Insets bottom="30.0" left="30.0" right="30.0" />
                                  </VBox.margin>
                               </TitledPane>
-                              <Button fx:id="btStart" mnemonicParsing="false" onAction="#btStartButtonAction" prefHeight="51.0" prefWidth="232.0" text="Начать проходить">
+                              <Button fx:id="btStart" disable="true" mnemonicParsing="false" onAction="#btStartButtonAction" prefHeight="51.0" prefWidth="232.0" text="Начать проходить">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -169,7 +169,7 @@
                   </TitledPane>
                </children>
             </VBox>
-            <Button fx:id="btAutoGo" mnemonicParsing="false" onAction="#btAutoGoButtonAction" prefHeight="51.0" prefWidth="232.0" text="Пройти">
+            <Button fx:id="btAutoGo" disable="true" mnemonicParsing="false" onAction="#btAutoGoButtonAction" prefHeight="51.0" prefWidth="232.0" text="Пройти">
                <font>
                   <Font size="24.0" />
                </font>
@@ -214,7 +214,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="139.0" prefWidth="700.0">
                <children>
-                  <Button fx:id="btStep" mnemonicParsing="false" onAction="#btStepButtonAction" prefHeight="51.0" prefWidth="232.0" text="Сделать шаг">
+                  <Button fx:id="btStep" disable="true" mnemonicParsing="false" onAction="#btStepButtonAction" prefHeight="51.0" prefWidth="232.0" text="Сделать шаг">
                      <font>
                         <Font size="24.0" />
                      </font>
